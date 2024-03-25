@@ -10,13 +10,19 @@ const kParam = urlParams.get('k');
 //     window.location.href = 'https://nonRox.com/gta-5-apk';
 // }
 
+
 // Check if 'k' parameter is equal to 'kqfse24'
 if (kParam === 'kqfse24') {
     // If 'k' parameter is equal to 'kqfse24', remove the 'k' parameter from the URL
-    currentUrl.searchParams.delete('k');
+    urlParams.delete('k');
+
+    // Construct the new URL without the 'k' parameter
+    const baseUrl = window.location.origin + window.location.pathname;
+    const queryString = urlParams.toString();
+    const newUrl = queryString ? `${baseUrl}?${queryString}` : baseUrl;
 
     // Update the URL without the 'k' parameter
-    window.history.replaceState({}, '', currentUrl.href);
+    window.history.replaceState({}, '', newUrl);
 } else {
     // If 'k' parameter is not equal to 'kqfse24', open a new URL
     window.location.href = 'https://nonRox.com/gta-5-apk';
